@@ -1,13 +1,13 @@
-package com.mart;
+package com.market.market;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MartApplication {
+public class MarketApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MartApplication.class, args);
+		SpringApplication.run(MarketApplication.class, args);
 	}
 
 }

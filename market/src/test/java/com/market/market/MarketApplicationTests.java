@@ -1,10 +1,10 @@
-package com.mart;
+package com.market.market;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MartApplicationTests {
+class MarketApplicationTests {
 
 	@Test
 	void contextLoads() {
