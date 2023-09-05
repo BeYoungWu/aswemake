@@ -1,6 +1,6 @@
 package com.market.dto;
 
-import java.time.LocalDate;
+import javax.validation.constraints.NotBlank;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -8,27 +8,27 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-public class ProductDto {
-
+public class AccountDto {
+	
 	@Getter
 	@Builder
 	@AllArgsConstructor
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
-	public static class ProductResDto {
-		private LocalDate priceDate;
-		private String productName;
-		private int price;
+	public static class SignupReqDto {
+		@NotBlank
+		private String userId;
+		@NotBlank
+		private String password;
+		private boolean admin = false;
+		private String adminToken = "";
 	}
 	
 	@Getter
 	@Builder
 	@AllArgsConstructor
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
-	public static class ProductReqDto {
-		private int productId;
-		private LocalDate priceDate;
-		private String productName;
-		private int price;
+	public static class LoginReqDto {
+		private String userId;
+		private String password;
 	}
-	
 }
