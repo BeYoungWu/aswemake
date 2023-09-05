@@ -1,5 +1,7 @@
 package com.market.serivce;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import com.market.domain.Product;
@@ -15,7 +17,7 @@ public class ProductService {
 
 	private final ProductRepository productRepository;
 	
-	
+	@Transactional
 	public CommonResDto registerProduct(ProductDto.ProductResDto product) {
 		
 		// 1. 일반사용자/마트 권환 확인

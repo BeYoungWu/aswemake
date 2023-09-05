@@ -15,7 +15,6 @@ public class ProductDto {
 	@AllArgsConstructor
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
 	public static class ProductResDto {
-		private LocalDate priceDate;
 		private String productName;
 		private int price;
 	}
@@ -25,7 +24,7 @@ public class ProductDto {
 	@AllArgsConstructor
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
 	public static class ProductReqDto {
-		private int productId;
+		private int productNo;
 		private LocalDate priceDate;
 		private String productName;
 		private int price;

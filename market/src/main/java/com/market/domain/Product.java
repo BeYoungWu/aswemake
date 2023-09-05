@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.market.dto.ProductDto.ProductResDto;
 
 import lombok.AccessLevel;
@@ -18,23 +20,24 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "tbl_account")
+@Table(name = "tbl_product")
 public class Product {
 
 	@Id
 	@GeneratedValue
-	private int productId;
+	private int productNo;
 	
 	@Column(nullable = false)
 	private String productName;
 	
 	private int price;
 	
+	@CreationTimestamp
 	private LocalDate priceDate;
 
 	@Builder
-	public Product(int productId, String productName, int price, LocalDate priceDate) {
-		this.productId = productId;
+	public Product(int productNo, String productName, int price, LocalDate priceDate) {
+		this.productNo = productNo;
 		this.productName = productName;
 		this.price = price;
 		this.priceDate = priceDate;
@@ -44,7 +47,6 @@ public class Product {
 		return builder()
 			.productName(dto.getProductName())
 			.price(dto.getPrice())
-			.priceDate(dto.getPriceDate())
 			.build();
 	}
 	
