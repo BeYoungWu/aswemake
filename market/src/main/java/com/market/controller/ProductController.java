@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/api/products")
 @RequiredArgsConstructor
+@Slf4j
 public class ProductController {
 
 	private final ProductService productService;
@@ -42,7 +43,7 @@ public class ProductController {
 		return null;
 	}
 	
-	@PatchMapping()
+	@PatchMapping("/modify")
 	public ResponseEntity<CommonResDto> modifyProduct() {
 		
 		return null;
