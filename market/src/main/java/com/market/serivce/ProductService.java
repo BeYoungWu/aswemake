@@ -1,5 +1,7 @@
 package com.market.serivce;
 
+import java.time.LocalDate;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.market.domain.Product;
 import com.market.dto.CommonResDto;
 import com.market.dto.ProductDto;
+import com.market.dto.ProductDto.ProductReqDto;
 import com.market.repository.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -34,5 +37,19 @@ public class ProductService {
 		}
 		
 	}
-	
+
+	public ProductDto.ProductReqDto getPriceByNameAndDate(String productName, LocalDate date) {
+		
+		Product p = productRepository.getPriceByNameAndDate(productName, date);
+//		ProductDto.ProductReqDto product = Product.builder()
+//												  .productNo(p.getProductNo())
+//												  .productName(p.getProductName())
+//												  .price(p.getPrice())
+//												  .priceStartDate(p.getPriceStartDate())
+//												  .priceEndDate(p.getPriceEndDate())
+//												  .build();
+		
+		return null;
+	}
+
 }

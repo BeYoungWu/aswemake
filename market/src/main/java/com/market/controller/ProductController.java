@@ -1,5 +1,7 @@
 package com.market.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.market.dto.CommonResDto;
 import com.market.dto.ProductDto;
+import com.market.dto.ProductDto.ProductReqDto;
 import com.market.serivce.ProductService;
 
 import lombok.RequiredArgsConstructor;
@@ -31,25 +34,25 @@ public class ProductController {
 	// 일부 데이터 수정 = patch
 	// 데이터 삭제 = delete
 	
-	@PostMapping("/register")
+	@PostMapping
 	public ResponseEntity<CommonResDto> registerProduct(@RequestBody ProductDto.ProductResDto product) {
 		
 		return ResponseEntity.ok().body(productService.registerProduct(product));
 	}
 	
-	@GetMapping()
-	public ResponseEntity<CommonResDto> getProductPriceByTime() {
-		
-		return null;
+	@GetMapping("/get-price")
+	public ResponseEntity<ProductDto.ProductReqDto> getPriceByNameAndDate(String productName,LocalDate date) {
+		ProductDto.ProductReqDto product = productService.getPriceByNameAndDate(productName,date);
+		return ResponseEntity.ok().body(product);
 	}
 	
-	@PatchMapping("/modify")
+	@PatchMapping("/{productName}")
 	public ResponseEntity<CommonResDto> modifyProduct() {
 		
 		return null;
 	}
 	
-	@DeleteMapping()
+	@DeleteMapping
 	public ResponseEntity<CommonResDto> removeProduct() {
 		
 		return null;

@@ -25,7 +25,8 @@ public class ProductDto {
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
 	public static class ProductReqDto {
 		private int productNo;
-		private LocalDate priceDate;
+		private LocalDate priceStartDate;
+		private LocalDate priceEndDate;
 		private String productName;
 		private int price;
 	}

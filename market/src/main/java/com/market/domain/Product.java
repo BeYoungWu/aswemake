@@ -35,14 +35,17 @@ public class Product {
 	private int price;
 	
 	@CreationTimestamp
-	private LocalDate priceDate;
+	private LocalDate priceStartDate;
+	
+	private LocalDate priceEndDate;
 
 	@Builder
-	public Product(int productNo, String productName, int price, LocalDate priceDate) {
+	public Product(int productNo, String productName, int price, LocalDate priceStartDate, LocalDate priceEndDate) {
 		this.productNo = productNo;
 		this.productName = productName;
 		this.price = price;
-		this.priceDate = priceDate;
+		this.priceStartDate = priceStartDate;
+		this.priceEndDate = priceEndDate;
 	}
 	
 	public static Product DtoToProduct(ProductResDto dto) {
