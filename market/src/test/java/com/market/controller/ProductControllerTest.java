@@ -23,7 +23,7 @@ public class ProductControllerTest {
 	void 상품_등록_테스트() {
 		ProductDto.ProductResDto p = ProductDto.ProductResDto.builder()
 				.productName("애플워치")
-				.price(1000)
+				.nowPrice(1000)
 				.build();
 		
 		productService.registerProduct(p);

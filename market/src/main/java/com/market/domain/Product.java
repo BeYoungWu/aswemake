@@ -1,15 +1,15 @@
 package com.market.domain;
 
-import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 import com.market.dto.ProductDto.ProductResDto;
 
@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
+@Entity(name = "tbl_product")
 @Table(name = "tbl_product")
 public class Product {
 
@@ -32,27 +32,24 @@ public class Product {
 	private String productName;
 	
 	@Column
-	private int price;
+	private int nowPrice;
 	
-	@CreationTimestamp
-	private LocalDate priceStartDate;
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+	private List<ProductHistory> productHistory;
 	
-	private LocalDate priceEndDate;
-
 	@Builder
-	public Product(int productNo, String productName, int price, LocalDate priceStartDate, LocalDate priceEndDate) {
+	public Product(int productNo, String productName, int nowPrice, List<ProductHistory> productHistory) {
 		this.productNo = productNo;
 		this.productName = productName;
-		this.price = price;
-		this.priceStartDate = priceStartDate;
-		this.priceEndDate = priceEndDate;
+		this.nowPrice = nowPrice;
+		this.productHistory = productHistory;
 	}
 	
 	public static Product DtoToProduct(ProductResDto dto) {
 		return builder()
 			.productName(dto.getProductName())
-			.price(dto.getPrice())
+			.nowPrice(dto.getNowPrice())
 			.build();
 	}
-	
+
 }

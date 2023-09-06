@@ -1,11 +1,12 @@
 package com.market.controller;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,26 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.market.dto.CommonResDto;
 import com.market.dto.ProductDto;
-import com.market.dto.ProductDto.ProductReqDto;
 import com.market.serivce.ProductService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api/products")
 @RequiredArgsConstructor
-@Slf4j
 public class ProductController {
 
 	private final ProductService productService;
-	
-	// mapping
-	// 검색, 가져오기 = get
-	// 데이터 삽입 = post
-	// 전체 데이터 수정 = put
-	// 일부 데이터 수정 = patch
-	// 데이터 삭제 = delete
 	
 	@PostMapping
 	public ResponseEntity<CommonResDto> registerProduct(@RequestBody ProductDto.ProductResDto product) {
@@ -40,15 +31,16 @@ public class ProductController {
 		return ResponseEntity.ok().body(productService.registerProduct(product));
 	}
 	
-	@GetMapping("/get-price")
-	public ResponseEntity<ProductDto.ProductReqDto> getPriceByNameAndDate(String productName,LocalDate date) {
+	// 아직 미완성
+	@GetMapping("/get-prices/{productName}/{date}")
+	public ResponseEntity<ProductDto.ProductReqDto> getPriceByNameAndDate(@PathVariable("productName") String productName, @PathVariable("date") Timestamp date) {
 		ProductDto.ProductReqDto product = productService.getPriceByNameAndDate(productName,date);
 		return ResponseEntity.ok().body(product);
 	}
 	
 	@PatchMapping("/{productName}")
 	public ResponseEntity<CommonResDto> modifyProduct() {
-		
+		// 만약 db에 존재한다면 이전 꺼는 end를 업데이트 해주고
 		return null;
 	}
 	

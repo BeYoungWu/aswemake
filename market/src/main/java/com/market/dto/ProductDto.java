@@ -1,6 +1,8 @@
 package com.market.dto;
 
-import java.time.LocalDate;
+import java.util.List;
+
+import com.market.dto.ProductHistoryDto.ProductHistoryResDto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -16,7 +18,7 @@ public class ProductDto {
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
 	public static class ProductResDto {
 		private String productName;
-		private int price;
+		private int nowPrice;
 	}
 	
 	@Getter
@@ -25,10 +27,19 @@ public class ProductDto {
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
 	public static class ProductReqDto {
 		private int productNo;
-		private LocalDate priceStartDate;
-		private LocalDate priceEndDate;
 		private String productName;
-		private int price;
+		private int nowPrice;
+		private List<ProductHistoryResDto> productHistory;
+	}
+	
+	@Getter
+	@Builder
+	@AllArgsConstructor
+	@NoArgsConstructor(access = AccessLevel.PROTECTED)
+	public static class ProductModifyResDto {
+		private String productName;
+		private int nowPrice;
+		private List<ProductHistoryResDto> productHistory;
 	}
 	
 }
