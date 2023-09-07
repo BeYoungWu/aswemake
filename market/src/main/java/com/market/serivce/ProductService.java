@@ -77,4 +77,18 @@ public class ProductService {
 		
 	}
 
+	public CommonResDto removeProduct(String productName) {
+		Product exist = productRepository.findByProductName(productName);
+		if (exist!=null) {
+			productRepository.delete(exist);
+			productHistoryRepository.deleteByProductName(productName);
+			return CommonResDto.builder().message("상품이 삭제되었습니다.").build();
+		} else {
+			return CommonResDto.builder().message("등록되어 있지 않은 상품입니다.").build();
+		}
+		
+		
+		
+	}
+
 }

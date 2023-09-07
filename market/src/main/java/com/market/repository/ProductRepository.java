@@ -19,7 +19,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	@Query("UPDATE tbl_product p SET p.productName=:#{#pe.productName}, p.nowPrice=:#{#pe.nowPrice}")
 	void modifyProduct(@Param("pe") Product product);
 
-
 	
 
 }

@@ -40,10 +40,10 @@ public class ProductController {
 		return ResponseEntity.ok().body(productService.modifyProduct(product));
 	}
 	
-	@DeleteMapping
-	public ResponseEntity<CommonResDto> removeProduct() {
+	@DeleteMapping("/remove")
+	public ResponseEntity<CommonResDto> removeProduct(String productName) {
 		
-		return null;
+		return ResponseEntity.ok().body(productService.removeProduct(productName));
 	}
 	
 }

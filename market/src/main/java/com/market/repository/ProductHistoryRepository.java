@@ -13,6 +13,9 @@ public interface ProductHistoryRepository extends JpaRepository<ProductHistory, 
 	@Query(nativeQuery =  true,
 		   value = "SELECT * FROM tbl_product_history WHERE product_name = :productName AND price_created <= :date ORDER BY product_history_no DESC LIMIT 1")
 	ProductHistory getPriceByNameAndDate(@Param("productName")String productName, @Param("date")LocalDate date);
+
+	@Query("DELETE FROM tbl_productHistory ph WHERE ph.productName=:productName")
+	void deleteByProductName(@Param("productName") String productName);
 	
 
 }
