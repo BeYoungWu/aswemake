@@ -14,21 +14,10 @@ public class AccountDto {
 	@Builder
 	@AllArgsConstructor
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
-	public static class SignupReqDto {
-		@NotBlank
-		private String userId;
+	public static class AccountResDto {
+		private int accountNo;
 		@NotBlank
 		private String password;
-		private boolean admin = false;
-		private String adminToken = "";
 	}
 	
-	@Getter
-	@Builder
-	@AllArgsConstructor
-	@NoArgsConstructor(access = AccessLevel.PROTECTED)
-	public static class LoginReqDto {
-		private String userId;
-		private String password;
-	}
 }

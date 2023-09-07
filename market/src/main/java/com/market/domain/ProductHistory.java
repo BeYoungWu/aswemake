@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.market.dto.ProductDto.ProductResDto;
+import com.market.dto.ProductDto;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -38,10 +38,6 @@ public class ProductHistory {
 	@Column(updatable = false)
 	private LocalDate priceCreated;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "product_no")
-//	private Product product;
-	
 	@Builder
 	public ProductHistory(int productHistoryNo, String productName, int price, LocalDate priceCreated) {
 		this.productHistoryNo = productHistoryNo;
@@ -50,7 +46,7 @@ public class ProductHistory {
 		this.priceCreated = priceCreated;
 	}
 	
-	public static ProductHistory DtoToProductHistory(ProductResDto dto) {
+	public static ProductHistory DtoToProductHistory(ProductDto.ProductResDto dto) {
 		return builder()
 			.productName(dto.getProductName())
 			.price(dto.getNowPrice())

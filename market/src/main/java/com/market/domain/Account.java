@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.market.dto.ProductDto;
+import com.market.dto.AccountDto;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -16,32 +16,27 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name = "tbl_product")
-@Table(name = "tbl_product")
-public class Product {
+@Entity
+@Table(name = "tbl_account")
+public class Account {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int productNo;
+	private int accountNo;
 	
 	@Column(nullable = false)
-	private String productName;
-	
-	@Column
-	private int nowPrice;
+	private String password;
 	
 	@Builder
-	public Product(int productNo, String productName, int nowPrice) {
-		this.productNo = productNo;
-		this.productName = productName;
-		this.nowPrice = nowPrice;
+	public Account(int accountNo, String password) {
+		this.accountNo = accountNo;
+		this.password = password;
 	}
 	
-	public static Product DtoToProduct(ProductDto.ProductResDto dto) {
+	public static Account DtoToAccount(AccountDto.AccountResDto account) {
 		return builder()
-			.productName(dto.getProductName())
-			.nowPrice(dto.getNowPrice())
+			.password(account.getPassword())
 			.build();
 	}
-
+	
 }

@@ -10,7 +10,6 @@ import com.market.domain.Product;
 import com.market.domain.ProductHistory;
 import com.market.dto.CommonResDto;
 import com.market.dto.ProductDto;
-import com.market.dto.ProductDto.ProductResDto;
 import com.market.dto.ProductHistoryDto;
 import com.market.repository.ProductHistoryRepository;
 import com.market.repository.ProductRepository;
@@ -44,8 +43,8 @@ public class ProductService {
 		}
 	}
 	
+	@Transactional
 	public ProductHistoryDto.ProductHistoryResDto getPriceByNameAndDate(ProductHistoryDto.ProductHistoryResDto product) {
-		// date보다 같거나작은 쿼리 DESC -> 맨위에꺼가 최신꺼 정답
 		String productName = product.getProductName();
 		LocalDate date = product.getPriceCreated();
 		ProductHistory ph = productHistoryRepository.getPriceByNameAndDate(productName, date);
@@ -62,7 +61,8 @@ public class ProductService {
 		}
 	}
 
-	public CommonResDto modifyProduct(ProductResDto product) {
+	@Transactional
+	public CommonResDto modifyProduct(ProductDto.ProductResDto product) {
 		Product p = Product.DtoToProduct(product);
 		ProductHistory ph = ProductHistory.DtoToProductHistory(product);
 		Product exist = productRepository.findByProductName(product.getProductName());
@@ -77,6 +77,7 @@ public class ProductService {
 		
 	}
 
+	@Transactional
 	public CommonResDto removeProduct(String productName) {
 		Product exist = productRepository.findByProductName(productName);
 		if (exist!=null) {

@@ -2,7 +2,10 @@ package com.market.repository;
 
 import java.time.LocalDate;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -14,7 +17,9 @@ public interface ProductHistoryRepository extends JpaRepository<ProductHistory, 
 		   value = "SELECT * FROM tbl_product_history WHERE product_name = :productName AND price_created <= :date ORDER BY product_history_no DESC LIMIT 1")
 	ProductHistory getPriceByNameAndDate(@Param("productName")String productName, @Param("date")LocalDate date);
 
-	@Query("DELETE FROM tbl_productHistory ph WHERE ph.productName=:productName")
+	@Transactional
+	@Modifying
+	@Query("DELETE FROM tbl_productHistory ph WHERE ph.productName = :productName")
 	void deleteByProductName(@Param("productName") String productName);
 	
 

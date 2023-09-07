@@ -1,0 +1,34 @@
+version : "3.3"
+services:
+  database:
+    image: mysql:8.0.30
+    restart: always
+    container_name: market
+    environment:
+      MYSQL_DATABASE: market
+      MYSQL_ROOT_PASSWORD: mysql
+    volumes:
+      - ./db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - springboot-mysql-net
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8082:8082"
+    depends_on:
+      - database
+    container_name: market_app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/market?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&useInnoDB=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mysql
+    networks:
+      - springboot-mysql-net
+networks:
+  springboot-mysql-net:
+    driver: bridge
