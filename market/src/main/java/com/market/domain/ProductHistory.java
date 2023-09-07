@@ -1,6 +1,7 @@
 package com.market.domain;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +18,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.market.dto.ProductDto.ProductResDto;
-import com.market.dto.ProductHistoryDto.ProductHistoryReqDto;
 import com.market.dto.ProductHistoryDto.ProductHistoryResDto;
 
 import lombok.AccessLevel;
@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
+@Entity(name = "tbl_productHistory")
 @Table(name = "tbl_productHistory")
 public class ProductHistory {
 
@@ -43,14 +43,14 @@ public class ProductHistory {
 	
 	@CreationTimestamp
 	@Column(updatable = false)
-	private Timestamp priceCreated;
+	private LocalDate priceCreated;
 	
-	@ManyToOne
-	@JoinColumn(name = "product_no")
-	private Product product;
+//	@ManyToOne
+//	@JoinColumn(name = "product_no")
+//	private Product product;
 	
 	@Builder
-	public ProductHistory(int productHistoryNo, String productName, int price, Timestamp priceCreated) {
+	public ProductHistory(int productHistoryNo, String productName, int price, LocalDate priceCreated) {
 		this.productHistoryNo = productHistoryNo;
 		this.productName = productName;
 		this.price = price;

@@ -1,6 +1,8 @@
 package com.market.serivce;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +15,6 @@ import com.market.domain.ProductHistory;
 import com.market.dto.CommonResDto;
 import com.market.dto.ProductDto;
 import com.market.dto.ProductHistoryDto;
-import com.market.dto.ProductHistoryDto.ProductHistoryReqDto;
 import com.market.repository.ProductHistoryRepository;
 import com.market.repository.ProductRepository;
 
@@ -47,25 +48,24 @@ public class ProductService {
 		}
 	}
 
-	public ProductDto.ProductReqDto getPriceByNameAndDate(String productName, Timestamp date) {
+	
+	
+	public ProductHistoryDto.ProductHistoryResDto getPriceByNameAndDate(ProductHistoryDto.ProductHistoryResDto product) {
 		
 		// date보다 같거나작은 쿼리 DESC -> 맨위에꺼가 최신꺼 정답
-		Product p = productRepository.getPriceByNameAndDate(productName, date);
-		List<ProductHistoryDto.ProductHistoryResDto> historyDtoList = p.getProductHistory().stream()
-							.map(history -> ProductHistoryDto.ProductHistoryResDto.builder()
-																				  .price(history.getPrice())
-																				  .priceCreated(history.getPriceCreated())
-																				  .build())
-							.collect(Collectors.toList());
-											
-		ProductDto.ProductReqDto product = ProductDto.ProductReqDto.builder()
-													 .productNo(p.getProductNo())
-													 .productName(p.getProductName())
-													 .nowPrice(p.getNowPrice())
-													 .productHistory(historyDtoList)
-													 .build();
+		String productName = product.getProductName();
+		LocalDate date = product.getPriceCreated();
+		ProductHistory ph = productHistoryRepository.getPriceByNameAndDate(productName, date);
+		if (ph==null) {
+			// 예외처리
+		}
+		ProductHistoryDto.ProductHistoryResDto productHistory = ProductHistoryDto.ProductHistoryResDto.builder()
+																				  .productName(ph.getProductName())
+																				  .price(ph.getPrice())
+																				  .priceCreated(ph.getPriceCreated())
+																				  .build();
 		
-		return product;
+		return productHistory;
 	}
 
 }

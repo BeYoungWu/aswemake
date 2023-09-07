@@ -1,6 +1,7 @@
 package com.market.dto;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -17,19 +18,8 @@ public class ProductHistoryDto {
 	public static class ProductHistoryResDto {
 		private String productName;
 		private int price;
-		private Timestamp priceCreated;
+		private LocalDate priceCreated;
 	}
-	
-	@Getter
-	@Builder
-	@AllArgsConstructor
-	@NoArgsConstructor(access = AccessLevel.PROTECTED)
-	public static class ProductHistoryReqDto {
-		private int productHistoryNo;
-		private int price;
-		private Timestamp priceCreated;
-	}
-	
 	
 	
 }

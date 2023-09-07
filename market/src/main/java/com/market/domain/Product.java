@@ -34,15 +34,15 @@ public class Product {
 	@Column
 	private int nowPrice;
 	
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-	private List<ProductHistory> productHistory;
+//	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+//	private List<ProductHistory> productHistory;
 	
 	@Builder
-	public Product(int productNo, String productName, int nowPrice, List<ProductHistory> productHistory) {
+	public Product(int productNo, String productName, int nowPrice) {
 		this.productNo = productNo;
 		this.productName = productName;
 		this.nowPrice = nowPrice;
-		this.productHistory = productHistory;
+//		this.productHistory = productHistory;
 	}
 	
 	public static Product DtoToProduct(ProductResDto dto) {

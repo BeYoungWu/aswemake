@@ -1,6 +1,9 @@
 package com.market.controller;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.market.dto.CommonResDto;
 import com.market.dto.ProductDto;
+import com.market.dto.ProductHistoryDto;
 import com.market.serivce.ProductService;
 
 import lombok.RequiredArgsConstructor;
@@ -31,17 +35,16 @@ public class ProductController {
 		return ResponseEntity.ok().body(productService.registerProduct(product));
 	}
 	
-	// 아직 미완성
-	@GetMapping("/get-prices/{productName}/{date}")
-	public ResponseEntity<ProductDto.ProductReqDto> getPriceByNameAndDate(@PathVariable("productName") String productName, @PathVariable("date") Timestamp date) {
-		ProductDto.ProductReqDto product = productService.getPriceByNameAndDate(productName,date);
-		return ResponseEntity.ok().body(product);
+	@PostMapping("/get-prices")
+	public ResponseEntity<ProductHistoryDto.ProductHistoryResDto> getPriceByNameAndDate(@RequestBody ProductHistoryDto.ProductHistoryResDto product) {
+		ProductHistoryDto.ProductHistoryResDto productHistory = productService.getPriceByNameAndDate(product);
+		return ResponseEntity.ok().body(productHistory);
 	}
 	
 	@PatchMapping("/{productName}")
-	public ResponseEntity<CommonResDto> modifyProduct() {
-		// 만약 db에 존재한다면 이전 꺼는 end를 업데이트 해주고
-		return null;
+	public ResponseEntity<CommonResDto> modifyProduct(@RequestBody ProductDto.ProductResDto product) {
+		// 
+		return ResponseEntity.ok().body(productService.registerProduct(product));
 	}
 	
 	@DeleteMapping

@@ -29,7 +29,7 @@ public class ProductDto {
 		private int productNo;
 		private String productName;
 		private int nowPrice;
-		private List<ProductHistoryResDto> productHistory;
+//		private List<ProductHistoryResDto> productHistory;
 	}
 	
 	@Getter
@@ -39,7 +39,7 @@ public class ProductDto {
 	public static class ProductModifyResDto {
 		private String productName;
 		private int nowPrice;
-		private List<ProductHistoryResDto> productHistory;
+//		private List<ProductHistoryResDto> productHistory;
 	}
 	
 }
