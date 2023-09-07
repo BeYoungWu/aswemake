@@ -29,6 +29,25 @@ public class ProductControllerTest {
 		productService.registerProduct(p);
 	}
 	
+	@DisplayName("상품 수정 테스트")
+	@Test
+	@Rollback(false)
+	void 상품_수정_테스트() {
+		
+	}
 	
+	@DisplayName("특정 시점 가격 조회 테스트")
+	@Test
+	@Rollback(false)
+	void 특정_시점_가격_조회_테스트() {
+		
+	}
+	
+	@DisplayName("상품 삭제 테스트")
+	@Test
+	@Rollback(false)
+	void 상품_삭제_테스트() {
+		
+	}
 	
 }

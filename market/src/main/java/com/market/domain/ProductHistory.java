@@ -1,6 +1,5 @@
 package com.market.domain;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -8,17 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.market.dto.ProductDto.ProductResDto;
-import com.market.dto.ProductHistoryDto.ProductHistoryResDto;
 
 import lombok.AccessLevel;
 import lombok.Builder;

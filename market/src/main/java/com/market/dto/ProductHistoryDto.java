@@ -1,6 +1,5 @@
 package com.market.dto;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 
 import lombok.AccessLevel;
