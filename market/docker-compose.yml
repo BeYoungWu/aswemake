@@ -1,34 +1,39 @@
-version : "3.3"
+version: '3'
+
 services:
-  database:
-    image: mysql:8.0.30
-    restart: always
-    container_name: market
+  db:
+    container_name: aswemake
+    image: mysql
+    restart: on-failure
     environment:
       MYSQL_DATABASE: market
       MYSQL_ROOT_PASSWORD: mysql
-    volumes:
-      - ./db:/var/lib/mysql
+      TZ: 'Asia/Seoul'
     ports:
-      - "3306:3306"
+      - "32775:3306"
+    volumes:
+      - data_mysqldb:/var/lib/mysqldb
     networks:
-      - springboot-mysql-net
-  app:
+      - app-tier
+    tty: true
+
+  api-server:
+    container_name: api-server
     build:
-      context: .
-      dockerfile: Dockerfile
-    restart: always
+      context: ./
+    command: gradle bootRun
     ports:
       - "8082:8082"
-    depends_on:
-      - database
-    container_name: market_app
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/market?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&useInnoDB=true
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: mysql
     networks:
-      - springboot-mysql-net
+      - app-tier
+    depends_on:
+      - aswemake
+    restart: on-failure
+    tty: true
+
 networks:
-  springboot-mysql-net:
+  app-tier:
     driver: bridge
+
+volumes:
+  data_mysqldb: null

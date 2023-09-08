@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
+@Entity(name = "tbl_account")
 @Table(name = "tbl_account")
 public class Account {
 

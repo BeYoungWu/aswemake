@@ -21,6 +21,12 @@ public class AccountController {
 	
 	private final AccountService accountService;
 	
+	@PostMapping("/register")
+	public ResponseEntity<CommonResDto> registerProduct(@RequestBody AccountDto.AccountResDto account) {
+
+		return ResponseEntity.ok().body(accountService.register(account));
+	}
+	
 	@PostMapping("/login")
 	public ResponseEntity<CommonResDto> registerProduct(@RequestBody AccountDto.AccountResDto account, HttpSession session) {
 		AccountDto.AccountResDto exist = accountService.check(account);

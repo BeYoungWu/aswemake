@@ -1,6 +1,3 @@
 FROM openjdk:11-jdk
-EXPOSE 8082
-CMD ["./mvnw", "clean", "package"]
-ARG JAR_FILE=./build/libs/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java", "-jar", "app.jar"]
+WORKDIR /app
+COPY . /app
